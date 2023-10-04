@@ -1,14 +1,12 @@
-package com.user.UserService.entity;
+package com.blog.service.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,22 +14,25 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name="users")
+@Table(name="blogs_table")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Users {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long userId;
-	private String username;
-	private String password;
-	private String email;
-	
-	@Transient
-	private List<Blogs> blogsList = new ArrayList();
+public class Blogs {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long blogId;
+	
+	private String blogTitle;
+	
+	private String blogBody;
+	
+	private LocalDate blogCreatedDate;
+	
+	private String blogCategory;
+	
+	private Long userId;
 }
