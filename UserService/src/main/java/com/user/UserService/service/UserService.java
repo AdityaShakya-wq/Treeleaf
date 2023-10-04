@@ -14,5 +14,9 @@ public interface UserService {
 	public List<Users> getAllUsers();
 	
 	public List<Blogs> getBlogsByUser(Long uid);
+	
+	public String deleteABlogByUser(String uid, String bid);
+	
+	public String editABlogByUser(String uid, Blogs bid) throws Exception;
 
 }

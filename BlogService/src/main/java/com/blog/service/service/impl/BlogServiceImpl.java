@@ -1,6 +1,7 @@
 package com.blog.service.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,23 @@ public class BlogServiceImpl implements BlogService{
 
 	@Override
 	public Blogs getABlog(Long bid) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Optional<Blogs> b = blogRepo.findById(bid);
+			
+			if(b.isPresent())
+			{
+				return b.get();
+			}
+			else
+			{
+				return null;
+			}
+			
+		}catch(Exception ex)
+		{
+			return null;
+		}
+		
 	}
 
 	@Override
@@ -64,6 +80,17 @@ public class BlogServiceImpl implements BlogService{
 			ex.printStackTrace();
 			throw new Exception("Failed");
 		}
+	}
+
+	@Override
+	public void deleteABlog(Long bid) {
+		try
+		{blogRepo.deleteById(bid);}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		
 	}
 
 }

@@ -13,5 +13,7 @@ public interface BlogService {
 	public List<Blogs> getUserBlogs(Long uid);
 	
 	public Blogs createABlog(Blogs b) throws Exception;
+	
+	public void deleteABlog(Long bid);
 
 }
