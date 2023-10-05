@@ -1,0 +1,34 @@
+server:
+  port: 8082
+  
+#datasource configuration
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog_db
+    username : root
+    password : root
+    
+#jpa configuration
+
+  jpa:
+    properties:
+      hibernate: 
+        dialect: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties.hibernate.format_sql : true
+
+  application:
+    name: BLOG-SERVICE
+    
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8083/eureka
+      
