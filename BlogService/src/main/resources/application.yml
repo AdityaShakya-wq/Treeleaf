@@ -1,5 +1,7 @@
 server:
   port: 8082
+  servlet:
+    context-path : /
   
 #datasource configuration
 spring:
@@ -32,3 +34,16 @@ eureka:
     service-url:
       defaultZone: http://localhost:8083/eureka
       
+openapi:
+  service:
+    title : blog-service doc
+    version : 1.0.0
+    url : http://localhost:8084
+
+springdoc:
+  api-docs:
+    path: /BLOG-SERVICE/v3/api-docs
+  swagger-ui:
+    path: /BLOG-SERVICE/swagger-ui.html
+  
+    

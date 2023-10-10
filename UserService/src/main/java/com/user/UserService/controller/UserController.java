@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import com.user.UserService.service.UserService;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin("*")
 public class UserController {
 	
 	@Autowired
@@ -67,7 +69,7 @@ public class UserController {
 		}
 	}
 	
-	@DeleteMapping("{uid}/delete/{bid}")
+	@DeleteMapping("/{uid}/delete/{bid}")
 	public ResponseEntity<String> deleteBlogOfUser(@PathVariable("uid") String uid, @PathVariable("bid") String bid)
 	{
 		
@@ -82,7 +84,7 @@ public class UserController {
 		}
 	}
 	
-	@DeleteMapping("{uid}/edit")
+	@PutMapping("/{uid}/edit")
 	public ResponseEntity<String> editUsersBlog(@PathVariable("uid") String uid, @RequestBody Blogs b) throws Exception
 	{
 		
