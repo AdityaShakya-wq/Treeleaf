@@ -22,6 +22,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.user.UserService.entity.Blogs;
 import com.user.UserService.entity.Users;
+import com.user.UserService.externalServices.BlogService;
 import com.user.UserService.repository.UserRepository;
 import com.user.UserService.service.UserService;
 
@@ -33,6 +34,9 @@ public class UserImpl implements UserService{
 	
 	@Autowired
 	RestTemplate restTemplate;
+	
+	@Autowired
+	BlogService blogService;
 
 	private Logger logger = LoggerFactory.getLogger(UserService.class);
 	@Override
@@ -76,8 +80,9 @@ public class UserImpl implements UserService{
 				//calling blog service to fetch every user's blogs
 				try
 				{
-					ResponseEntity<List> responseBlogList = restTemplate.getForEntity("http://BLOG-SERVICE/blogs/getBlogByUser/"+ul.getUserId(), List.class);
-					ul.setBlogsList(responseBlogList.getBody());
+//					ResponseEntity<List> responseBlogList = restTemplate.getForEntity("http://BLOG-SERVICE/blogs/getBlogByUser/"+ul.getUserId(), List.class);
+					List<Blogs> resultBlogs = blogService.getBlogByUserId(ul.getUserId().toString()); 
+					ul.setBlogsList(resultBlogs);
 				}catch(Exception ex)
 				{
 					ex.printStackTrace();
